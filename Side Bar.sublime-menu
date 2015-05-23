@@ -6,7 +6,7 @@
 		{ "caption": "Save", "command": "lightning_save_bundle", "args":{"files":[]} },
 		{ "caption": "Fetch", "children" :
 		[
-			{ "caption": "Lightning", "command": "fetch", "args": {} },
+			{ "caption": "Lightning", "command": "fetch", "args": {"dirs": []} },
 			{ "caption": "Metadata", "command": "fetch_meta", "args": {} },
 			{ "caption": "Package", "command": "fetch_package", "args": {} },
 		]},

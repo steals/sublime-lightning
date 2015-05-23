@@ -107,9 +107,9 @@ class Helper(sublime_plugin.WindowCommand):
             return
 
         if (index == 0):
-            self.do_fetch("all", self.window.folders()[0])
+            self.do_fetch("all", self.selDir)
         else:
-            self.do_fetch(self.messages[index][2], self.window.folders()[0])
+            self.do_fetch(self.messages[index][2], self.seldir)
         return
 
     def open_selected_metadata(self, index):
@@ -333,7 +333,7 @@ class FetchPackageCommand(sublime_plugin.WindowCommand):
 
 
 class FetchCommand(sublime_plugin.WindowCommand):
-    def run(self):
+    def run(self, dirs):
         # self.window.show_input_panel(
         #    "Bundle name: ",
         #    "all",
@@ -341,7 +341,9 @@ class FetchCommand(sublime_plugin.WindowCommand):
         #    None,
         #    None)
         # pass
-        Helper(self.window).show_bundle_list()
+        helper = Helper(self.window)
+        helper.selDir = dirs[0]
+        helper.show_bundle_list()
 
     def do_fetch(self, bundle):
         self.dirs = self.window.folders()
