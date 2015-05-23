@@ -716,10 +716,10 @@ class LightningSave(sublime_plugin.EventListener):
     def on_post_save(self, view):
         filename = view.file_name()
         if Helper.parent_dir_is_aura(self, os.path.dirname(filename)):
-            command = 'push -f=' + filename
+            command = '-f=' + filename
             view.window().run_command(
                 'exec',
-                {'cmd': ["force", "aura", command]})
+                {'cmd': ["force", "aura", "push", command]})
         elif Helper.is_metadata(self, os.path.dirname(filename)):
             if Helper.is_static_resource(self, filename):
                 print("is static resource")
@@ -753,10 +753,10 @@ class LightningSaveBundleCommand(sublime_plugin.EventListener):
                     return
 
                 for name in names:
-                    command = 'push -f=' + os.path.join(filename, name)
+                    command = '-f=' + os.path.join(filename, name)
                     view.window().run_command(
                         'exec',
-                        {'cmd': ["force", "aura", command]})
+                        {'cmd': ["force", "aura", "push", command]})
 
         return
 
